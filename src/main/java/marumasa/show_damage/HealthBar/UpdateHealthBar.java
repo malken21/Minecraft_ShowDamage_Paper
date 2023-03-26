@@ -54,7 +54,7 @@ public class UpdateHealthBar extends BukkitRunnable {
 
         } else {
 
-            removeHealthBar = new RemoveHealthBar(SummonHealthBar.run(target, name.toString(), cfg, mc), target);
+            removeHealthBar = new RemoveHealthBar(SummonHealthBar.run(target, name.toString(), cfg), target);
 
         }
         database.ShowHealthBarEntityList.put(target, removeHealthBar);
