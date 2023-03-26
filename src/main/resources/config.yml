@@ -1,0 +1,7 @@
+show:
+  DamageDisplay: true
+  HealthBar: true
+
+tag:
+  DamageDisplay: "marumasa.DamageDisplay"
+  HealthBar: "marumasa.HealthBar"

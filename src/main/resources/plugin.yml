@@ -1,0 +1,4 @@
+name: ShowDamage
+version: '${version}'
+main: marumasa.show_damage.minecraft
+api-version: 1.19
