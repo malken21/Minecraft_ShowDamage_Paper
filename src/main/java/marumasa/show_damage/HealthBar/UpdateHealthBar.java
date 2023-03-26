@@ -9,8 +9,6 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.Arrays;
-
 public class UpdateHealthBar extends BukkitRunnable {
 
     private final LivingEntity target;
