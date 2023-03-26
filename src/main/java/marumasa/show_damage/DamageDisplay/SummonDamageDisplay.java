@@ -10,14 +10,16 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.TextDisplay;
 
 public class SummonDamageDisplay {
-    public static void run(LivingEntity target, double damage, Config config, minecraft mc) {
+    public static void run(LivingEntity target, double damage, Config cfg, minecraft mc) {
+
+        if (cfg.hideList.DamageDisplay.contains(target.getType().name())) return;
 
         TextDisplay textDisplay = (TextDisplay) target.getWorld().spawnEntity(target.getLocation().add(0, 1, 0), EntityType.TEXT_DISPLAY);
 
         textDisplay.text(Component.text(String.format("%.0f", damage)));
         textDisplay.setBillboard(Display.Billboard.CENTER);
         textDisplay.setSeeThrough(true);
-        textDisplay.addScoreboardTag(config.tag.DamageDisplay);
+        textDisplay.addScoreboardTag(cfg.tag.DamageDisplay);
 
         RemoveDamageDisplay removeDamageDisplay = new RemoveDamageDisplay(textDisplay);
         removeDamageDisplay.runTaskLater(mc, 10);

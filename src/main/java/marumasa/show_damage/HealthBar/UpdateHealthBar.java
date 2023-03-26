@@ -9,6 +9,8 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Arrays;
+
 public class UpdateHealthBar extends BukkitRunnable {
 
     private final LivingEntity target;
@@ -23,6 +25,8 @@ public class UpdateHealthBar extends BukkitRunnable {
 
     @Override
     public void run() {
+
+        if (cfg.hideList.HealthBar.contains(target.getType().name())) return;
 
         if (target.isDead()) {
             if (database.ShowHealthBarEntityList.containsKey(target)) {

@@ -14,6 +14,8 @@ import org.bukkit.event.world.EntitiesLoadEvent;
 import org.bukkit.event.world.EntitiesUnloadEvent;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class events implements Listener {
@@ -67,11 +69,10 @@ public class events implements Listener {
             if (cfg.show.DamageDisplay) SummonDamageDisplay.run(entity, event.getDamage(), cfg, mc);
     }
 
-
     private void remove(Entity entity) {
         final Set<String> tags = entity.getScoreboardTags();
         for (final String tag : tags)
-            if (Arrays.asList(database.RemoveTagList).contains(tag)) {
+            if (cfg.removeTagList.contains(tag)) {
                 entity.remove();
                 return;
             }

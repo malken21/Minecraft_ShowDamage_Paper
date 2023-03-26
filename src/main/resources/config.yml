@@ -5,3 +5,7 @@ show:
 tag:
   DamageDisplay: "marumasa.DamageDisplay"
   HealthBar: "marumasa.HealthBar"
+
+hideList:
+  DamageDisplay: [ ]
+  HealthBar: [ "ender_dragon","wither","allay" ]
