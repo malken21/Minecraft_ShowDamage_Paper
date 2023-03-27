@@ -8,4 +8,4 @@ tag:
 
 hideList:
   DamageDisplay: [ ]
-  HealthBar: [ "ender_dragon","wither","allay" ]
+  HealthBar: [ ]

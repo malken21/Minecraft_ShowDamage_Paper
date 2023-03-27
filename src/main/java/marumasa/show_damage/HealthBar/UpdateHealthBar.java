@@ -15,16 +15,18 @@ public class UpdateHealthBar extends BukkitRunnable {
     private final Config cfg;
     private final minecraft mc;
 
+    private final double health;
+
     public UpdateHealthBar(LivingEntity entity, Config config, minecraft minecraft) {
         target = entity;
         cfg = config;
         mc = minecraft;
+        health = entity.getHealth();
     }
 
     @Override
     public void run() {
-
-        if (cfg.hideList.HealthBar.contains(target.getType().name())) return;
+        if (health == target.getHealth() || cfg.hideList.HealthBar.contains(target.getType().name())) return;
 
         if (target.isDead()) {
             if (database.ShowHealthBarEntityList.containsKey(target)) {
