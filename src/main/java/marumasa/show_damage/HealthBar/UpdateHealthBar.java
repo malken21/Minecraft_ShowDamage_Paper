@@ -42,11 +42,8 @@ public class UpdateHealthBar extends BukkitRunnable {
 
         if (MaxHealthAttribute == null) return;
 
-        final int Health = (int) Math.round(health);
-        final int MaxHealth = (int) Math.round(MaxHealthAttribute.getValue());
-
         final StringBuilder name = new StringBuilder("§c▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏§r");
-        name.insert((30 * Health / MaxHealth) + 2, "§8");
+        name.insert((int) ((30 * health / MaxHealthAttribute.getValue()) + 2), "§8");
 
         final RemoveHealthBar removeHealthBar;
         if (database.ShowHealthBarEntityList.containsKey(target)) {
