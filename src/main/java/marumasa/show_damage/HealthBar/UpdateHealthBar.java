@@ -15,18 +15,19 @@ public class UpdateHealthBar extends BukkitRunnable {
     private final Config cfg;
     private final minecraft mc;
 
-    private final double health;
+    private final double old_health;
 
     public UpdateHealthBar(LivingEntity entity, Config config, minecraft minecraft) {
         target = entity;
         cfg = config;
         mc = minecraft;
-        health = entity.getHealth();
+        old_health = entity.getHealth();
     }
 
     @Override
     public void run() {
-        if (health == target.getHealth() || cfg.hideList.HealthBar.contains(target.getType().name())) return;
+        final double health = target.getHealth();
+        if (old_health == health || cfg.hideList.HealthBar.contains(target.getType().name())) return;
 
         if (target.isDead()) {
             if (database.ShowHealthBarEntityList.containsKey(target)) {
@@ -41,7 +42,7 @@ public class UpdateHealthBar extends BukkitRunnable {
 
         if (MaxHealthAttribute == null) return;
 
-        final int Health = (int) Math.round(target.getHealth());
+        final int Health = (int) Math.round(health);
         final int MaxHealth = (int) Math.round(MaxHealthAttribute.getValue());
 
         final StringBuilder name = new StringBuilder("§c▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏▏§r");
