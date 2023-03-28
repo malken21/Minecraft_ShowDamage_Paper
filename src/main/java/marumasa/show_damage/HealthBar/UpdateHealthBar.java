@@ -30,11 +30,10 @@ public class UpdateHealthBar extends BukkitRunnable {
         if (old_health == health || cfg.hideList.HealthBar.contains(target.getType().name())) return;
 
         if (target.isDead()) {
-            if (database.ShowHealthBarEntityList.containsKey(target)) {
-                final RemoveHealthBar old_UndoHealthBar = database.ShowHealthBarEntityList.get(target);
-                old_UndoHealthBar.cancel();
-                new RemoveHealthBar(old_UndoHealthBar.text, target).run();
-            }
+            final RemoveHealthBar old_UndoHealthBar = database.ShowHealthBarEntityList.get(target);
+            if (old_UndoHealthBar == null) return;
+            old_UndoHealthBar.cancel();
+            new RemoveHealthBar(old_UndoHealthBar.text, target).run();
             return;
         }
 
