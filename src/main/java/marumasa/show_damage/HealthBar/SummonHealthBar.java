@@ -6,12 +6,19 @@ import org.bukkit.entity.Display;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.TextDisplay;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Transformation;
 
-public class SummonHealthBar {
-    public static TextDisplay run(LivingEntity target, String HealthBar, Config config) {
+public class SummonHealthBar extends BukkitRunnable {
+    private final String text;
 
-        final TextDisplay textDisplay = (TextDisplay) target.getWorld().spawnEntity(target.getLocation(), EntityType.TEXT_DISPLAY);
+    public final TextDisplay textDisplay;
+
+    public SummonHealthBar(LivingEntity target, String HealthBar, Config config) {
+        text = HealthBar;
+
+        textDisplay = (TextDisplay) target.getWorld().spawnEntity(target.getLocation(), EntityType.TEXT_DISPLAY);
+
         textDisplay.setBillboard(Display.Billboard.CENTER);
         textDisplay.setSeeThrough(true);
         Transformation transformation = textDisplay.getTransformation();
@@ -23,9 +30,12 @@ public class SummonHealthBar {
                 transformation.getScale(),
                 transformation.getRightRotation()
         ));
-        textDisplay.text(Component.text(HealthBar));
-        target.addPassenger(textDisplay);
 
-        return textDisplay;
+        target.addPassenger(textDisplay);
+    }
+
+    @Override
+    public void run() {
+        textDisplay.text(Component.text(text));
     }
 }
