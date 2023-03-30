@@ -22,7 +22,9 @@ public class SummonDamageDisplay {
         textDisplay.addScoreboardTag(cfg.tag.DamageDisplay);
 
         RemoveDamageDisplay removeDamageDisplay = new RemoveDamageDisplay(textDisplay);
-        removeDamageDisplay.runTaskLater(mc, 10);
+        removeDamageDisplay.runTaskLater(mc, 20);
         database.DamageDisplayList.put(textDisplay, removeDamageDisplay);
+
+        new AnimationDamageDisplay(textDisplay).runTaskLater(mc, 2);
     }
 }
