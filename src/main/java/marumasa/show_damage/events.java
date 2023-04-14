@@ -52,9 +52,12 @@ public class events implements Listener {
         //エンティティがダメージを受けたら
 
         //ダメージを受けたエンティティが生きているエンティティだったら
-        if (event.getEntity() instanceof LivingEntity livingEntity)
+        if (event.getEntity() instanceof LivingEntity entity) {
             //体力バーを更新
-            if (cfg.show.HealthBar) new UpdateHealthBar(livingEntity, cfg, mc).runTaskLater(mc, 0);
+            if (cfg.show.HealthBar) new UpdateHealthBar(entity, cfg, mc).runTaskLater(mc, 0);
+            //ダメージ表示
+            if (cfg.show.DamageDisplay) SummonDamageDisplay.run(entity, event.getDamage(), cfg, mc);
+        }
     }
 
     @EventHandler
@@ -63,7 +66,8 @@ public class events implements Listener {
 
         //攻撃されたエンティティが生きているエンティティだったら
         if (event.getEntity() instanceof LivingEntity entity)
-            if (cfg.show.DamageDisplay) SummonDamageDisplay.run(entity, event.getDamage(), cfg, mc);
+            //ダメージ表示
+            if (cfg.show.DamageDisplay) SummonDamageDisplay.run(entity, event.getDamager(), event.getDamage(), cfg, mc);
     }
 
     private void remove(Entity entity) {
